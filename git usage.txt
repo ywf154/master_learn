@@ -1,0 +1,12 @@
+
+git init
+
+git add .
+
+git commit -m initial
+
+git branch -M main
+
+git remote add origin https://ywf154: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@github.com/ywf154/yis_first_project.git
+
+git push --set-upstream origin main
