@@ -1,0 +1,27 @@
+clc; close all;
+a = zeros(100,100,3);
+%         y,  x, colors
+% a  is  every cell
+a=uint8(a);
+subplot(2,2,1),imshow(a);
+%blue red     is   1
+a(10:12,:,1)=255;
+subplot(2,2,2),imshow(a);
+%blue line        is   3
+a(20:22,:,3)=255;
+subplot(2,2,3),imshow(a);
+%green line    is   2
+a(30:32,:,2)=255;
+subplot(2,2,4),imshow(a);
+%yellow line     is   1:2
+a(30:32,:,1:2)=255;
+subplot(2,2,4),imshow(a);
+
+
+%?? line     is   1:3
+a(30:32,:,1)=128;
+subplot(2,2,4),imshow(a);
+
+%white line     is   1:3
+a(30:32,:,1:3)=255;
+subplot(2,2,4),imshow(a);

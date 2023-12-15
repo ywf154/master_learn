@@ -1,0 +1,81 @@
+function morphBasic
+clc; clear all; close all;
+global origin se sp3;
+
+sImages = {'Image 1','Image 2','Image 3','Image 4'};
+uicontrol('Style', 'text','Position',[110 120 100 80],...
+'string','Images');
+uicontrol('Style', 'listbox','Position',[110 100 100 80],...
+'string',sImages,'Callback',@fImage);
+
+sElements={'HLine','VLine','Cross','Square'};
+uicontrol('Style', 'text','Position',[210 120 100 80],...
+'string','Str Elements');
+uicontrol('Style', 'listbox','Position',[210 100 100 80],...
+'string',sElements,'Callback',@fStrel);
+
+sOperations={'Erode','Dilate','Open','Close'};
+uicontrol('Style', 'text','Position',[310 120 100 80],...
+'string','Str Elements');
+uicontrol('Style', 'listbox','Position',[310 100 100 80],...
+'string',sOperations,'Callback',@fOperation);
+
+sp3 = subplot(1,3,3); axis off;
+set(gcf,'Position',get(0,'Screensize'));    
+
+end
+
+function fImage(b,e)
+global origin sp3;
+i = get(b, 'value'); 
+disp(i);   %display(i);
+origin = imread(strcat('s',num2str(i),'.bmp'))
+subplot 131,imshow(origin);
+makeGrid(origin)
+end
+
+function fStrel(b,e)
+global origin se sp3;
+i = get(b, 'value'); 
+ switch i
+    case 1
+        se = [1,1,1]; 
+    case 2
+        se = [0,1,0; 0,1,0; 0,1,0]; 
+    case 3
+        se = [0,1,0; 1,1,1; 0,1,0];
+    case 4
+        se = [1,1,1; 1,1,1; 1,1,1];  
+ end
+ subplot 132,imshow(se);
+ makeGrid(se);
+end
+
+function fOperation(b,e)
+global origin se sp3;
+i = get(b, 'value'); 
+ switch i
+    case 1
+        image = imerode(origin,se); 
+    case 2
+        image = imdilate(origin,se);
+    case 3
+        image = imopen(origin,se);
+    case 4
+        image = imclose(origin,se); 
+ end
+ subplot 133,imshow(image);
+makeGrid(image);
+end
+
+function makeGrid(image)
+hold on;
+[height,width] = size(image);
+for row = 0.5:1:height+0.5
+   line([0.5,width+0.5],[row,row],'Color','r'); 
+end
+for col = 0.5:1:width+0.5
+   line([col,col],[0.5,height+0.5],'Color','r','LineWidth',1); 
+end
+hold off;
+end 

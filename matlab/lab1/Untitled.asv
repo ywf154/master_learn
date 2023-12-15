@@ -1,0 +1,9 @@
+clc; close all;
+a = zeros(100,100,3);
+%         y,  x, colors
+%
+a=uint8(a);
+subplot(2,2,1),imshow(a);
+a(10:12,:,1)=255;
+subplot(2,2,2),imshow(a);
+

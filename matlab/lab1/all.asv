@@ -1,0 +1,17 @@
+function all
+clc;clear all;close all;
+f = uimenu('Label','images');
+ uimenu(f,'Label','bw','Callback',@fbw);
+uimenu(f,'Label','Gray','Callback',@fGray); 
+uimenu(f,'Label','Color','Callback',@fColor); 
+end
+
+function fbw(o,e)
+bw;
+
+end
+function fGray(o,e)
+Gray;
+
+end
+

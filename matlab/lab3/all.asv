@@ -1,0 +1,7 @@
+function all
+
+f = uimenu('Label','images');
+ uimenu(f,'Label','bw','Callback','figure');@
+
+
+end
